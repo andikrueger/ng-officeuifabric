@@ -80,12 +80,14 @@ export class TextFieldDirective implements ng.IDirective {
     public link(scope: ITextFieldScope, instanceElement: ng.IAugmentedJQuery, attrs: ng.IAttributes, ngModel: ng.INgModelController): void {
         scope.labelShown = true;
         scope.required = 'required' in attrs;
+        scope.$watch(
+            () => { return instanceElement.attr('disabled'); },
+            ((newValue) => { scope.disabled = typeof newValue !== 'undefined'; })
+        );
         scope.disabled = 'disabled' in attrs;
         scope.uifUnderlined = 'uifUnderlined' in attrs;
         scope.inputFocus = function(ev: any): void {
-            if (scope.uifUnderlined) {
                 scope.isActive = true;
-            }
         };
         scope.inputClick = function(ev: any): void {
             if (scope.placeholder) {
@@ -97,9 +99,7 @@ export class TextFieldDirective implements ng.IDirective {
             if (scope.placeholder && input.val().length === 0) {
                 scope.labelShown = true;
             }
-            if (scope.uifUnderlined) {
-                scope.isActive = false;
-            }
+            scope.isActive = false;
         };
         if (ngModel != null) {
             ngModel.$render = () => {
