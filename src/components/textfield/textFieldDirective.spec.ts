@@ -166,4 +166,15 @@ describe('textFieldDirective: <uif-textfield />', () => {
         textInput = jQuery(textInput);
         expect(textInput.hasClass('ng-hide')).toBe(true, 'input should be hidden');
     }));
+
+    it('input should be able to be of type password', inject(($compile: Function, $rootScope: ng.IRootScopeService) => {
+        let $scope: any = $rootScope.$new();
+        let textBox: JQuery = $compile('<uif-textfield ng-model="value" uif-type="password"></uif-textfield>')($scope);
+        textBox = jQuery(textBox[0]);
+        $scope.$apply();
+
+        let textInput: JQuery = textBox.find('input.ms-TextField-field');
+        textInput = jQuery(textInput);
+        expect(textInput.attr('type')).toBe('password', 'input is of type password');
+    }));
 });
