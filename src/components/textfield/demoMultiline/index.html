@@ -12,6 +12,7 @@
   <script src="../../../../node_modules/angular/angular.min.js"></script>
   <!-- ngofficeuifabric library -->
   <script src="../../../../dist/ngOfficeUiFabric.js"></script>
+  <script src="index.js"></script>
 </head>
 
 <body>
@@ -30,6 +31,19 @@
     Renders this:
     <br />
     <uif-textfield uif-label="This is the label" uif-description="This is the description" uif-Multiline="true" />
+  </p>
+
+<h2>Basic multiline usage with placeholder</h2>
+  <p>
+    This markup: <br />
+    <code>
+      &lt;uif-textfield uif-label=&quot;This is the label&quot; uif-description=&quot;This is the description&quot; uif-multiline=&quot;true&quot; /&gt;
+    </code>
+  </p>
+  <p>
+    Renders this:
+    <br />
+    <uif-textfield placeholder="This is the placeholder" uif-description="This is the description" uif-Multiline="true" />
   </p>
 
   <h2>Disabled</h2>

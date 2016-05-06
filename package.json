@@ -1,6 +1,6 @@
 {
   "name": "ng-officeuifabric-source",
-  "version": "0.8.2",
+  "version": "0.10.1",
   "description": "Angular directives for Microsoft's Office UI Fabric.",
   "license": "MIT",
   "author": {
@@ -9,10 +9,11 @@
     "url": "http://www.andrewconnell.com"
   },
   "contributors": [
+    "Clements, Steve <steve@originaleye.co.uk>",
     "Connell, Andrew <me@andrewconnell.com>",
     "Czopek, Jerry <jerzy.czopek@outlook.com>",
     "Gandhi, Jigar <jigarr.gandhi@gmail.com>",
-    "Krüger, Andi <Andreas.Krueger@comparex-group.com>",
+    "Krüger, Andi <solutions@andikrueger.de>",
     "Mastykarz, Waldek <waldek@mastykarz.nl>",
     "Meilleur, John <john@meilleur.ca>",
     "Molberg, Steen <stm@globeteam.com>",
@@ -49,7 +50,7 @@
   },
   "dependencies": {
     "angular": "1.5.5",
-    "office-ui-fabric": "2.3.0"
+    "office-ui-fabric": "2.4.1"
   },
   "devDependencies": {
     "angular-animate": "1.5.5",
@@ -57,9 +58,9 @@
     "angular-sanitize": "1.5.5",
     "browser-sync": "^2.11.1",
     "chalk": "^1.1.1",
-    "commitizen": "2.7.6",
+    "commitizen": "2.8.1",
     "coveralls": "^2.11.6",
-    "cz-conventional-changelog": "1.1.5",
+    "cz-conventional-changelog": "1.1.6",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
     "gulp-debug": "^2.1.2",
@@ -75,7 +76,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-strip-comments": "2.4.3",
     "gulp-task-listing": "^1.0.1",
-    "gulp-tslint": "^4.2.1",
+    "gulp-tslint": "^5.0.0",
     "gulp-typescript": "^2.10.0",
     "gulp-uglify": "^1.5.1",
     "gulp-util": "^3.0.7",

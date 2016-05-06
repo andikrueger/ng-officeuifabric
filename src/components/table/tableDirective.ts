@@ -2,6 +2,7 @@
 
 import * as ng from 'angular';
 import {TableRowSelectModeEnum} from './tableRowSelectModeEnum';
+import {TableTypeEnum} from './tableTypeEnum';
 
 /**
  * @ngdoc interface
@@ -15,13 +16,15 @@ import {TableRowSelectModeEnum} from './tableRowSelectModeEnum';
  * @property {boolean} orderAsc - Specifies whether the data in the table should be sort ascending or descending.
  *                                Default `true` (sorting ascending)
  * @property {string} rowSelectMode - Specifies the row selection mode used by the table
- * @property {ITableRowScope[]} - Contains the data rows (all except the header row) that belong to the table 
+ * @property {ITableRowScope[]} - Contains the data rows (all except the header row) that belong to the table
  */
 export interface ITableScope extends ng.IScope {
     orderBy?: string;
     orderAsc: boolean;
     rowSelectMode?: string;
     rows: ITableRowScope[];
+    tableType: string;
+    tableTypeClass: string;
 }
 
 class TableController {
@@ -95,9 +98,14 @@ class TableController {
  *                                         Possible values: none - selecting rows is not possible;
  *                                                          single - only one row can be selected;
  *                                                          multiple - multiple rows can be selected;
+ * @property {string} uifTableType      - Specifies whether the table is rendered in fluid or fixed mode.
+ *                                        Possible values: fixed    - the table is rendered in fixed style.
+ *                                                                    Added with Fabric 2.4.
+ *                                                         fluid    - the table style is fluid (Default)
  */
 export interface ITableAttributes extends ng.IAttributes {
     uifRowSelectMode?: string;
+    uifTableType?: string;
 }
 
 /**
@@ -115,27 +123,31 @@ export interface ITableAttributes extends ng.IAttributes {
  * @usage
  * 
  * <uif-table>
- *   <uif-table-row>
- *     <uif-table-row-select></uif-table-row-select>
- *     <uif-table-header>File name</uif-table-header>
- *     <uif-table-header>Location</uif-table-header>
- *     <uif-table-header>Modified</uif-table-header>
- *     <uif-table-header>Type</uif-table-header>
- *   </uif-table-row>
- *   <uif-table-row ng-repeat="f in files" uif-selected="{{f.isSelected}}">
- *     <uif-table-row-select></uif-table-row-select>
- *     <uif-table-cell>{{f.fileName}}</uif-table-cell>
- *     <uif-table-cell>{{f.location}}</uif-table-cell>
- *     <uif-table-cell>{{f.modified | date}}</uif-table-cell>
- *     <uif-table-cell>{{f.type}}</uif-table-cell>
- *   </uif-table-row>
+ *   <uif-table-head>
+ *     <uif-table-row>
+ *       <uif-table-row-select></uif-table-row-select>
+ *       <uif-table-header>File name</uif-table-header>
+ *       <uif-table-header>Location</uif-table-header>
+ *       <uif-table-header>Modified</uif-table-header>
+ *       <uif-table-header>Type</uif-table-header>
+ *     </uif-table-row>
+ *   </uif-table-head>
+ *   <uif-table-body>
+ *     <uif-table-row ng-repeat="f in files" uif-selected="{{f.isSelected}}">
+ *       <uif-table-row-select></uif-table-row-select>
+ *       <uif-table-cell>{{f.fileName}}</uif-table-cell>
+ *       <uif-table-cell>{{f.location}}</uif-table-cell>
+ *       <uif-table-cell>{{f.modified | date}}</uif-table-cell>
+ *       <uif-table-cell>{{f.type}}</uif-table-cell>
+ *     </uif-table-row>
+ *   </uif-table-body>
  * </uif-table>
  */
 export class TableDirective implements ng.IDirective {
     public restrict: string = 'E';
     public transclude: boolean = true;
     public replace: boolean = true;  // required for correct HTML rendering
-    public template: string = '<div class="ms-Table" ng-transclude></div>';
+    public template: string = '<table ng-class="[\'ms-Table\', tableTypeClass]" ng-transclude></table>';
     public controller: any = TableController;
     public controllerAs: string = 'table';
 
@@ -158,6 +170,22 @@ export class TableDirective implements ng.IDirective {
 
         if (scope.rowSelectMode === undefined) {
             scope.rowSelectMode = TableRowSelectModeEnum[TableRowSelectModeEnum.none];
+        }
+
+        if (attrs.uifTableType !== undefined && attrs.uifTableType !== null) {
+            if (TableTypeEnum[attrs.uifTableType] === undefined) {
+                controller.$log.error('Error [ngOfficeUiFabric] officeuifabric.components.table. ' +
+                '\'' + attrs.uifTableType + '\' is not a valid option for \'uif-table-type\'. ' +
+                'Valid options are fixed|fluid.');
+            } else {
+                scope.tableType = attrs.uifTableType;
+            }
+        }
+        if (scope.tableType === undefined) {
+            scope.tableType = TableTypeEnum[TableTypeEnum.fluid];
+        }
+        if (scope.tableType === TableTypeEnum[TableTypeEnum.fixed]) {
+            scope.tableTypeClass = 'ms-Table--fixed';
         }
     }
 }
@@ -245,7 +273,7 @@ export class TableRowDirective implements ng.IDirective {
     public restrict: string = 'E';
     public transclude: boolean = true;
     public replace: boolean = true;  // required for correct HTML rendering    
-    public template: string = '<div class="ms-Table-row" ng-transclude></div>';
+    public template: string = '<tr ng-transclude></tr>';
     public require: string = '^uifTable';
     public scope: {} = {
         item: '=uifItem'
@@ -329,6 +357,7 @@ export class TableRowDirective implements ng.IDirective {
  */
 export interface ITableRowSelectScope extends ng.IScope {
     rowSelectClick: (ev: any) => void;
+    tagName: string;
 }
 
 /**
@@ -355,9 +384,9 @@ export interface ITableRowSelectScope extends ng.IScope {
  */
 export class TableRowSelectDirective implements ng.IDirective {
     public restrict: string = 'E';
-    public template: string = '<span class="ms-Table-rowCheck"></span>';
+    public template: string = '<td class="ms-Table-rowCheck"></td>';
     public replace: boolean = true;  // required for correct HTML rendering
-    public require: string[] = ['^uifTable', '^uifTableRow'];
+    public require: string[] = ['^uifTable', '?^uifTableHead', '^uifTableRow'];
 
     public static factory(): ng.IDirectiveFactory {
         const directive: ng.IDirectiveFactory = () => new TableRowSelectDirective();
@@ -369,9 +398,14 @@ export class TableRowSelectDirective implements ng.IDirective {
                 instanceElement: ng.IAugmentedJQuery,
                 attrs: ng.IAttributes,
                 controllers: any[]): void {
+        let thead: TableHeadController = controllers[1];
+        if (thead) {
+            instanceElement.replaceWith('<th class="ms-Table-rowCheck"></th>');
+        }
+
         scope.rowSelectClick = (ev: any): void => {
             let table: TableController = controllers[0];
-            let row: TableRowController = controllers[1];
+            let row: TableRowController = controllers[2];
 
             if (table.rowSelectMode !== TableRowSelectModeEnum[TableRowSelectModeEnum.multiple]) {
                 return;
@@ -422,7 +456,7 @@ export class TableRowSelectDirective implements ng.IDirective {
 export class TableCellDirective implements ng.IDirective {
     public restrict: string = 'E';
     public transclude: boolean = true;
-    public template: string = '<span class="ms-Table-cell" ng-transclude></span>';
+    public template: string = '<td ng-transclude></td>';
     public replace: boolean = true;  // required for correct HTML rendering    
 
     public static factory(): ng.IDirectiveFactory {
@@ -480,7 +514,7 @@ export class TableHeaderDirective implements ng.IDirective {
     public restrict: string = 'E';
     public transclude: boolean = true;
     public replace: boolean = true; // required for correct HTML rendering
-    public template: string = '<span class="ms-Table-cell" ng-transclude></span>';
+    public template: string = '<th ng-transclude></th>';
     public require: string = '^uifTable';
 
     public static factory(): ng.IDirectiveFactory {
@@ -531,6 +565,76 @@ export class TableHeaderDirective implements ng.IDirective {
     }
 }
 
+class TableHeadController {
+}
+
+/**
+ * @ngdoc directive
+ * @name uifTableHead
+ * @module officeuifabric.components.table
+ * 
+ * @restrict E
+ * 
+ * @description 
+ * `<uif-table-head>` is a table head directive that denotes table head rows.
+ * 
+ * @see {link http://dev.office.com/fabric/components/table}
+ * 
+ * @usage
+ * 
+ * <uif-table>
+ *   <uif-table-head>
+ *     <uif-table-row>...</uif-table-row>
+ *   </uif-table-head>
+ * </uif-table>
+ */
+export class TableHeadDirective implements ng.IDirective {
+    public restrict: string = 'E';
+    public transclude: boolean = true;
+    public template: string = '<thead ng-transclude></thead>';
+    public replace: boolean = true;  // required for correct HTML rendering
+    public controller: any = TableHeadController;
+
+    public static factory(): ng.IDirectiveFactory {
+        const directive: ng.IDirectiveFactory = () => new TableHeadDirective();
+
+        return directive;
+    }
+}
+
+/**
+ * @ngdoc directive
+ * @name uifTableBody
+ * @module officeuifabric.components.table
+ * 
+ * @restrict E
+ * 
+ * @description 
+ * `<uif-table-body>` is a table body directive that denotes table body rows.
+ * 
+ * @see {link http://dev.office.com/fabric/components/table}
+ * 
+ * @usage
+ * 
+ * <uif-table>
+ *   <uif-table-body>
+ *     <uif-table-row>...</uif-table-row>
+ *   </uif-table-body>
+ * </uif-table>
+ */
+export class TableBodyDirective implements ng.IDirective {
+    public restrict: string = 'E';
+    public transclude: boolean = true;
+    public template: string = '<tbody ng-transclude></tbody>';
+    public replace: boolean = true;  // required for correct HTML rendering    
+
+    public static factory(): ng.IDirectiveFactory {
+        const directive: ng.IDirectiveFactory = () => new TableBodyDirective();
+
+        return directive;
+    }
+}
+
 /**
  * @ngdoc module
  * @name officeuifabric.components.table
@@ -543,4 +647,6 @@ export var module: ng.IModule = ng.module('officeuifabric.components.table', ['o
     .directive('uifTableRow', TableRowDirective.factory())
     .directive('uifTableRowSelect', TableRowSelectDirective.factory())
     .directive('uifTableCell', TableCellDirective.factory())
-    .directive('uifTableHeader', TableHeaderDirective.factory());
+    .directive('uifTableHeader', TableHeaderDirective.factory())
+    .directive('uifTableHead', TableHeadDirective.factory())
+    .directive('uifTableBody', TableBodyDirective.factory());
