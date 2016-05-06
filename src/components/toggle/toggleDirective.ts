@@ -15,15 +15,25 @@ import * as ng from 'angular';
  * @property {string} uifLabelOff     - The label to display when not toggled
  * @property {string} uifLabelOn      - The label to display when toggled
  * @property {string} uifTextLocation - Location of the label (left or right), compared to the toggle  
+ * @property {string} uniqueId
+ * @property {string} textLocation
+ * @property {string} disabled
+ * @property {string} ngChange        - Expression to be called on the ngChange event of the input element
+ * @property {string} ngTrueValue     - Pass a constant for the ng-true-value of the input element
+ * @property {string} ngFalseValue    - Pass a constant for the ng-false-value of the input element
  */
 
-export interface IToggleScope {
+export interface IToggleScope extends ng.IScope {
     ngModel: string;
     uifLabelOff: string;
     uifLabelOn: string;
     uifTextLocation: string;
     uniqueId: number;
-    toggleClass: string;
+    textLocation: string;
+    disabled: boolean;
+    ngChange: string;
+    ngTrueValue: string;
+    ngFalseValue: string;
 }
 
 /**
@@ -43,9 +53,11 @@ export interface IToggleScope {
  * <uif-toggle ng-model='toggled' />
  */
 export class ToggleDirective implements ng.IDirective {
-    public template: string = '<div ng-class="toggleClass">' +
+    public template: string = '<div ng-class="[\'ms-Toggle\', textLocation, {\'is-disabled\': disabled}]">' +
                  '<span class="ms-Toggle-description"><ng-transclude/></span>' +
-                '<input type="checkbox" id="{{::$id}}" class="ms-Toggle-input" ng-model="ngModel" />' +
+                '<input type="checkbox" id="{{::$id}}" class="ms-Toggle-input" ' +
+                'ng-model="ngModel" ng-change="ngChange()" ng-disabled="disabled" ' +
+                'ng-attr-ng-true-value="{{ngTrueValue || undefined}}" ng-attr-ng-false-value="{{ngFalseValue || undefined}}" />' +
                 '<label for="{{::$id}}" class="ms-Toggle-field">' +
                     '<span class="ms-Label ms-Label--off">{{uifLabelOff}}</span>' +
                     '<span class="ms-Label ms-Label--on">{{uifLabelOn}}</span>' +
@@ -54,7 +66,10 @@ export class ToggleDirective implements ng.IDirective {
     public restrict: string = 'E';
     public transclude: boolean = true;
     public scope: {} = {
+        ngChange: '&?',
+        ngFalseValue: '@?',
         ngModel: '=?',
+        ngTrueValue: '@?',
         uifLabelOff: '@',
         uifLabelOn: '@',
         uifTextLocation: '@'
@@ -66,13 +81,16 @@ export class ToggleDirective implements ng.IDirective {
     }
 
     public link(scope: IToggleScope, elem: ng.IAugmentedJQuery, attrs: ng.IAttributes): void {
-        scope.toggleClass = 'ms-Toggle';
-
         if (scope.uifTextLocation) {
             let loc: string = scope.uifTextLocation;
             loc = loc.charAt(0).toUpperCase() + loc.slice(1);
-            scope.toggleClass += ' ms-Toggle--text' + loc;
+            scope.textLocation = ' ms-Toggle--text' + loc;
         }
+        scope.$watch(
+            () => { return elem.attr('disabled'); },
+            ((newValue) => { scope.disabled = typeof newValue !== 'undefined'; })
+        );
+        scope.disabled = 'disabled' in attrs;
     }
 }
 

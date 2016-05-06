@@ -50,6 +50,11 @@ class ButtonController {
  * Primary buttons:
  * <uif-button uif-type="primary">Lorem Ipsum</uif-button>
  *
+ * Disabled buttons:
+ * <uif-button disabled="disabled">Lorem Ipsum</uif-button>
+ * or
+ * <uif-button ng-disabled="true">Lorem Ipsum</uif-button>
+ *
  * Command buttons:
  * <uif-button uif-type="command">Lorem Ipsum</uif-button>
  * <uif-button uif-type="command">
@@ -148,9 +153,17 @@ export class ButtonDirective implements ng.IDirective {
                   attrs: IButtonAttributes,
                   controllers: any,
                   transclude: ng.ITranscludeFunction): void {
-    // if disabled, add the disabled attribute to the button/a tag
-    let disabled: boolean = 'disabled' in attrs;
-    scope.disabled = disabled;
+
+    attrs.$observe('disabled', (isDisabled) => {
+      scope.disabled = !!isDisabled;
+    });
+
+    // if disabled prevent click action
+    element.on('click', (e: Event) => {
+      if (scope.disabled) {
+        e.preventDefault();
+      }
+    });
   }
 
   /**

@@ -2,12 +2,209 @@
 ### [next (TBD)](https://github.com/ngOfficeUIFabric/ng-officeuifabric/tree/dev)
 
 
+------------------
+
+
+<a name="0.10.1"></a>
+### [0.10.1 - May 4, 2016](https://github.com/ngOfficeUIFabric/ng-officeuifabric/releases/tag/0.10.1)
+
+
+#### Fixes
+
+- **uif-textfield**
+  - ng-change not working ([0b33058](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/0b33058), Closes [#324](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/324))
+
+
+------------------
+
+
+<a name="0.10.0"></a>
+### [0.10.0 - April 27, 2016](https://github.com/ngOfficeUIFabric/ng-officeuifabric/releases/tag/0.10.0)
+
+#### Features
+
+- **uif-messagebanner**
+  - add directive ([79748c0](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/79748c0), Closes [#299](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/299))
+- **uif-pivot**
+  - add directive ([76d4748](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/76d4748), Closes [#33](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/33))
+
+#### Fixes
+
+- **dependencies**
+  - updated various build / dev dependencies
+- **uif-peoplepicker**
+  - issue when person not removed in demo ([18636c6](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/18636c6), Closes [#317](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/317))
+- **uif-button**
+  - ng-disabled not watched correctly ([aff3fd3](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/aff3fd3), Closes [#319](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/319))
+
+
+------------------
+
+
+<a name="0.9.0"></a>
+### [0.9.0 - April 25, 2016](https://github.com/ngOfficeUIFabric/ng-officeuifabric/releases/tag/0.9.0)
+
+#### Features
+
+- **uif-peoplepicker**
+  - add directive ([6e0ba80](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/6e0ba80), Closes [#30](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/30))
+- **uif-table**
+  - add new table type ([c643a25](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/c643a25), [#308](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/308))
+- **uif-toggle**
+  - add ng checkbox attributes support ([bccfb64](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/bccfb64), Closes [#289](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/289))
+
+#### Fixes
+
+- **dependencies**
+  - update library dependencies & verify working with **Office UI Fabric 2.4.1** ([c643a25](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/c643a25))
+- **uif-contextualmenu**
+  - diabled not watched ([c914b96](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/c914b96))
+- **uif-commandbar**, **uif-contextualmenu**, **uif-navbar** & **uif-panel** 
+  - change 'let' keyword in all demos ([8af391f](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/8af391f), Closes [#313](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/313))
+
+------------------
+
+
+<a name="0.8.4"></a>
+### [0.8.4 - April 21, 2016](https://github.com/ngOfficeUIFabric/ng-officeuifabric/releases/tag/0.8.4)
+
+#### Fixes
+
+- **uif-button**
+  - disabled not watched and handled ([59a2b87](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/59a2b87))
+- **uif-textfield**
+  - clear placeholder on click ([1ed03de](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/1ed03de), Closes [#305](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/305))
+
+
+------------------
+
+
+<a name="0.8.3"></a>
+### [0.8.3 - April 19, 2016](https://github.com/ngOfficeUIFabric/ng-officeuifabric/releases/tag/0.8.3)
+
+#### Fixes
+
+- **uif-datepicker**
+  - remove label ([fe974ef](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/fe974ef), Closes [#295](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/295))
+- **uif-dropdown**
+  - selecting initial value ([1da267d](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/1da267d), Closes [#230](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/230))
+- **uif-textfield**
+  - update demo multiline & type='password' test ([c3d4327](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/c3d4327), Closes [#300](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/300), [#301](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/301))
+
+#### Breaking Changes
+
+- **uif-table**
+  - changed rendering to use table markup ([d7822c8](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/d7822c8), Closes [#294](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/294))
+
+  BREAKING CHANGE: although the table won't break it's recommended to add the `uif-table-head` and `uif-table-body` directives to the table for accessibility and rendering purposes.
+
+  Change your code from:
+
+  ```html
+  <uif-table>
+      <uif-table-row>
+          <uif-table-row-select></uif-table-row-select>
+          <uif-table-header>File name</uif-table-header>
+          <uif-table-header>Location</uif-table-header>
+          <uif-table-header>Modified</uif-table-header>
+          <uif-table-header>Type</uif-table-header>
+      </uif-table-row>
+      <uif-table-row ng-repeat="f in files" uif-selected="{{f.isSelected}}">
+          <uif-table-row-select></uif-table-row-select>
+          <uif-table-cell>{{f.fileName}}</uif-table-cell>
+          <uif-table-cell>{{f.location}}</uif-table-cell>
+          <uif-table-cell>{{f.modified | date}}</uif-table-cell>
+          <uif-table-cell>{{f.type}}</uif-table-cell>
+      </uif-table-row>
+  </uif-table>
+  ```
+
+  to:
+
+  ```html
+  <uif-table>
+      <uif-table-head>
+          <uif-table-row>
+              <uif-table-row-select></uif-table-row-select>
+              <uif-table-header>File name</uif-table-header>
+              <uif-table-header>Location</uif-table-header>
+              <uif-table-header>Modified</uif-table-header>
+              <uif-table-header>Type</uif-table-header>
+          </uif-table-row>
+      </uif-table-head>
+      <uif-table-body>
+          <uif-table-row ng-repeat="f in files" uif-selected="{{f.isSelected}}">
+              <uif-table-row-select></uif-table-row-select>
+              <uif-table-cell>{{f.fileName}}</uif-table-cell>
+              <uif-table-cell>{{f.location}}</uif-table-cell>
+              <uif-table-cell>{{f.modified | date}}</uif-table-cell>
+              <uif-table-cell>{{f.type}}</uif-table-cell>
+          </uif-table-row>
+      </uif-table-body>
+  </uif-table>
+  ```
+
+
+------------------
+
+
+<a name="0.8.2"></a>
+### [0.8.2 - April 19, 2016](https://github.com/ngOfficeUIFabric/ng-officeuifabric/releases/tag/0.8.2)
+
+#### Features
+
+- **uif-textfield**
+  - multiline and password ([7d78807](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/7d78807), Closes [#227](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/227))
+
+
+------------------
+
+
+<a name="0.8.1"></a>
+### [0.8.1 - April 19, 2016](https://github.com/ngOfficeUIFabric/ng-officeuifabric/releases/tag/0.8.1)
+
+#### Fixes
+
+- **dependencies**
+  - update library dependencies & verify working with **Angular 1.5.5** & **Office UI Fabric 2.3.0** ([09bf108](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/09bf108), Closes [#287](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/287))
+- **uif-textfield**
+  - disabled attribute missing ([1e30042](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/1e30042))
+- **uif-toggle**
+  - disabled attribute missing ([86675be](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/86675be))
+
+
+------------------
+
+
+<a name="0.8.0"></a>
+### [0.8.0 - April 18, 2016](https://github.com/ngOfficeUIFabric/ng-officeuifabric/releases/tag/0.8.0)
+
+#### Features
+
+- **uif-list**
+  - add directive ([7cd02dc](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/7cd02dc), Closes [#24](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/24))
+- **uif-panel**
+  - add directive ([774f44e](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/774f44e), Closes [#29](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/29))
+
+#### Fixes
+
+- **uif-icon**
+  - fixed typo with newValue parameter ([588f7ba](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/588f7ba))
+- **uif-textfield**
+  - disabled not watched ([b811381](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/b811381))
+  - fixed placeholder to hide when textfield gets focus ([c9a08d5](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/c9a08d5))
+
+
+------------------
+
+
 <a name="0.7.4"></a>
 ### [0.7.4 - April 12, 2016](https://github.com/ngOfficeUIFabric/ng-officeuifabric/releases/tag/0.7.4)
 
 #### Fixes
 - **uif-choicefield**
   - setting disabled dynamically ([1881150](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/1881150), Closes [#257](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/257))
+
 
 ------------------
 
