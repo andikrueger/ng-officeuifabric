@@ -33,7 +33,7 @@
     <uif-textfield uif-label="This is the label" uif-description="This is the description" uif-Multiline="true" />
   </p>
 
-<h2>Basic multiline usage with placeholder</h2>
+  <h2>Basic multiline usage with placeholder</h2>
   <p>
     This markup: <br />
     <code>
@@ -50,18 +50,37 @@
   <p>
     This markup: <br />
     <code>
-
+    &lt;uif-textfield uif-label=&quot;This is the label&quot; uif-Multiline=&quot;true&quot; ng-disabled=&quot;disabled&quot; /&gt;
     </code>
   </p>
   <p>
     Renders this:
     <br />
     <uif-textfield uif-label="This is the label" uif-Multiline="true" ng-disabled="disabled" />
-
   </p>
   <p>
     <input type="checkbox" ng-model="disabled" />Disabled
   </p>
+  <div ng-controller="demoCtrl">
+    <h2>ng-trim and ng-list</h2>
+    <p>
+      This markup:
+      <br />
+      <code>
+      &lt;uif-textfield uif-label=&quot;This is the label&quot; ng-model=&quot;trimModel&quot; uif-Multiline=&quot;true&quot; ng-trim=&quot;false&quot; ng-list=&quot;/\n/&quot; /&gt;
+    </code>
+    </p>
+    <p>
+      Insert a multiline text...
+      <p>
+        Renders this:
+        <br />
+        <uif-textfield uif-label="This is the label" ng-model="trimModel" uif-Multiline="true" ng-trim="false" ng-list="/\n/" />
+      </p>
+      <p>
+        Value = {{trimModel||JSON}}
+      </p>
+  </div>
 
 </body>
 

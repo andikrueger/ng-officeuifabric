@@ -16,8 +16,10 @@ import {InputTypeEnum} from './uifTypeEnum';
  * @property {string} uifLabel        - The label to display next to the text field
  * @property {string} placeholder     - A placeholder to display over the input. Will hide as soon as a user clicks on the input.
  * @property {string} uifDescription  - A longer text description to display below the text field
- * @property {string} ngModel         - The scope variable to bind to the text input.
  * @property {string} ngChange        - The expression to evaluate when the ngModel changes
+ * @property {string} ngList          - A delimiter that converts between a delimited string and an array of strings. default: ng-list=", " 
+ * @property {string} ngModel         - The scope variable to bind to the text input.
+ * @property {boolean} ngTrim         - If set to false Angular will not automatically trim the input. default: true 
  * @property {InputTypeEnum} uifType  - The type of the text field
  * @property {boolean} uifMultiline   - If true, textbox will be rendered as a multiline text area
  *
@@ -26,8 +28,10 @@ export interface ITextFieldScope extends ng.IScope {
   uifLabel: string;
   placeholder: string;
   uifDescription: string;
-  ngModel: string;
   ngChange: string;
+  ngList: string;
+  ngModel: string;
+  ngTrim: boolean;
   uifType: InputTypeEnum;
   uifMultiline: boolean;
   max: string;
@@ -103,16 +107,19 @@ export class TextFieldDirective implements ng.IDirective {
   '<label ng-show="labelShown" class="ms-Label" ng-click="labelClick()">{{uifLabel || placeholder}}</label>' +
   '<input ng-model="ngModel" ng-change="ngChange" ng-blur="inputBlur()" ng-focus="inputFocus()" ng-click="inputClick()" ' +
   'class="ms-TextField-field" ng-show="!uifMultiline" ng-disabled="disabled" type="{{uifType}}"' +
-  'min="{{min}}" max="{{max}}" step="{{step}}" />' +
+  'ng-attr-min="{{min}}" ng-attr-max="{{max}}" ng-attr-step="{{step}}" ng-attr-ng-trim="{{ngTrim}}"/>' +
   '<textarea ng-model="ngModel" ng-blur="inputBlur()" ng-focus="inputFocus()" ng-click="inputClick()" ' +
-  'class="ms-TextField-field" ng-show="uifMultiline" ng-disabled="disabled"></textarea>' +
+  'class="ms-TextField-field" ng-show="uifMultiline" ng-disabled="disabled"' +
+  'ng-attr-ng-trim="{{ngTrim}}" ng-list="{{ngList}}"></textarea>' +
   '<span class="ms-TextField-description">{{uifDescription}}</span>' +
   '</div>';
   public scope: {} = {
     max: '@',
     min: '@',
     ngChange: '=?',
+    ngList: '@',
     ngModel: '=?',
+    ngTrim: '@',
     placeholder: '@',
     step: '@',
     uifDescription: '@',

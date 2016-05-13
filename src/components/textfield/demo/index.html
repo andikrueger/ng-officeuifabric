@@ -94,7 +94,7 @@
   </p>
   <p>
     <input type="checkbox" ng-model="disabled" />Disabled
-    </p>
+  </p>
 
   <h2>Disabled</h2>
   <p>
@@ -111,7 +111,7 @@
   </p>
 
   <h2>Placeholder</h2>
-   <p>
+  <p>
     This markup: <br />
     <code>
       &lt;uif-textfield placeholder=&quot;This is the placeholder&quot; /&gt;
@@ -136,6 +136,26 @@
     Renders this:
     <br />
     <uif-textfield uif-label="This is the label" uif-type="password" />
+  </p>
+
+  <h2>Other Types</h2>
+  <p>
+    The uif-textfield supports the following types: text, password, email, url, tel, range, number
+  </p>
+  <p>
+    This markup: (range) <br />
+    <code>
+      &lt;uif-textfield uif-label=&quot;This is the label&quot; uif-type=&quot;range&quot; min=&quot;30&quot; max=&quot;80&quot; step=&quot;10&quot; /&gt;
+    </code>
+  </p>
+
+  <p>
+    Renders this:
+    <br />
+    <uif-textfield uif-label="This is the label" ng-model="rangeModel" uif-type="range" min="30" max="80" step="10" />
+  </p>
+  <p>
+    Current value: {{rangeModel}}
   </p>
 </body>
 
