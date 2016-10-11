@@ -87,6 +87,12 @@ describe('panel: <uif-panel />', () => {
       expect($scope.isOpen).toEqual(false);
     }));
 
+    it('close button should not trigger submit', () => {
+      let closeButton: JQuery = panel.find('.ms-Panel-closeButton');
+      this.$timeoutservice.flush();
+      expect(closeButton).toHaveAttr('type', 'button');
+    });
+
   });
 
   describe('Command bar is placed correctly', () => {
@@ -165,7 +171,7 @@ describe('panel: <uif-panel />', () => {
 
     it('should render correct html', inject(($compile: Function, $rootScope: angular.IRootScopeService) => {
       expect(panel).toHaveClass('ms-Panel');
-      expect(panel).toHaveClass('ms-Panel--medium');
+      expect(panel).toHaveClass('ms-Panel--md');
     }));
 
   });
@@ -227,7 +233,7 @@ describe('panel: <uif-panel />', () => {
     it('should render correct html', inject(($compile: Function, $rootScope: angular.IRootScopeService) => {
       expect(panel).toHaveClass('ms-Panel');
       // default to medium
-      expect(panel).toHaveClass('ms-Panel--medium');
+      expect(panel).toHaveClass('ms-Panel--md');
     }));
 
   });

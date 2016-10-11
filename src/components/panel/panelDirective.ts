@@ -27,7 +27,7 @@ export class PanelDirective implements ng.IDirective {
                                     ng-class="uifShowOverlay === true ? \'ms-Overlay--dark\' : \'\';"></div>
                               <div class="ms-Panel-main">
                                 <div class="ms-Panel-commands">
-                                  <button ng-if="uifShowClose" class='ms-Panel-closeButton' ng-click="closePanel()">
+                                  <button type="button" ng-if="uifShowClose" class='ms-Panel-closeButton' ng-click="closePanel()">
                                     <uif-icon uif-type='x'></uif-icon>
                                   </button>
                                 </div>
@@ -126,6 +126,17 @@ export class PanelController {
 
   public static $inject: string[] = ['$scope', '$animate', '$element', '$log', '$timeout'];
 
+  // mapping enum to CSS classes for size
+  private uifPanelSizeClasses: { [index: number]: string } = {
+    [PanelTypes.small]: 'ms-Panel--sm',
+    [PanelTypes.medium]: 'ms-Panel--md',
+    [PanelTypes.large]: 'ms-Panel--lg',
+    [PanelTypes.extralarge]: 'ms-Panel--xl',
+    [PanelTypes.extraextralarge]: 'ms-Panel--xxl',
+    [PanelTypes.left]: 'ms-Panel--left'
+  };
+
+
   constructor(
     private $scope: IPanelScope,
     private $animate: ng.animate.IAnimateService,
@@ -146,7 +157,8 @@ export class PanelController {
           $scope.uifType = 'medium';
       }
 
-      $element.addClass('ms-Panel--' + $scope.uifType);
+      let size: number = PanelTypes[$scope.uifType];
+      $element.addClass(this.uifPanelSizeClasses[size]);
 
       $scope.$watch('uifIsOpen', (newValue: boolean) => {
 
