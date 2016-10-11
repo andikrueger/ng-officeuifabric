@@ -1,4 +1,108 @@
-<a name="next"></a>
+<a name="0.12.6"></a>
+### [0.12.6 - October 3, 2016](https://github.com/ngOfficeUIFabric/ng-officeuifabric/releases/tag/0.12.6)
+
+#### Fixes
+
+- **uif-breadcrumb**
+  - fix text compile error ([0f1749a](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/0f1749a))
+
+
+<a name="0.12.5"></a>
+### [0.12.5 - October 3, 2016](https://github.com/ngOfficeUIFabric/ng-officeuifabric/releases/tag/0.12.5)
+
+#### Fixes
+
+- **uif-textfield**
+  - $dirty not being set on uif-textfield ([25bf59f](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/25bf59f), [#367](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/367))
+- **uif-toggle**
+  - $dirty not being set on uif-toggle ([81c60f7](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/81c60f7), [#379](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/379))
+
+<a name="0.12.4"></a>
+### [0.12.4 - September 14, 2016](https://github.com/ngOfficeUIFabric/ng-officeuifabric/releases/tag/0.12.4)
+
+#### Features
+
+- **uif-dropdown**
+  - added support for `ngModel.$touched` for `uif-dropdown` ([bc258b3](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/bc258b3), [#368](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/368))
+
+
+#### Fixes
+
+- **WallabyJS**
+  - update wallaby to use definately typed definition ([46e9ef0](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/46e9ef0))
+- **dependencies**
+  - update dependencies ([09187e3](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/09187e3))
+
+<a name="0.12.3"></a>
+### [0.12.3 - August 1, 2016](https://github.com/ngOfficeUIFabric/ng-officeuifabric/releases/tag/0.12.3)
+
+#### Features
+
+- **WallabyJS**
+  - added support for Wallaby.js ([deb0029](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/deb0029))
+
+
+#### Fixes
+
+- **uif-navbar, uif-contextmenu**
+  - animation demo is not working ([b353876](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/b353876), Closes [#402](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/402))
+- **dependencies**
+  - update dependencies ([454d9a1](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/454d9a1))
+
+
+------------------
+
+
+<a name="0.12.2"></a>
+### [0.12.2 - July 25, 2016](https://github.com/ngOfficeUIFabric/ng-officeuifabric/releases/tag/0.12.2)
+
+#### Features
+
+- **uif-datepicker**
+  - add custom date format support ([e9f9a6e](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/e9f9a6e), Closes [#385](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/385))
+
+
+#### Fixes
+
+- **uif-facepile**
+  - display overflow only if necessary ([acf1dd6](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/acf1dd6))
+  - update button to include button attribute ([772d65b](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/772d65b), Closes [#390](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/390))
+- **uif-messagebanner**
+  - add type attribute to button element ([58b6538](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/58b6538), Closes [#388](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/388))
+- **uif-peoplepicker**
+  - update button to include button attribute ([6da9687](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/6da9687), Closes [#391](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/391))
+
+
+------------------
+
+
+<a name="0.12.1"></a>
+### [0.12.1 - June 29, 2016](https://github.com/ngOfficeUIFabric/ng-officeuifabric/releases/tag/0.12.1)
+
+#### Fixes
+  - **uif-panel**
+    - close button no longer triggers reload ([4de8d81](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/4de8d81), Closes [#366](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/366))
+
+### [0.12.0 - June 7, 2016](https://github.com/ngOfficeUIFabric/ng-officeuifabric/releases/tag/0.12.0)
+
+#### Features
+
+- **uif-facepile**
+  - new directive ([6d9b88b](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/6d9b88b), Closes [#275](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/275))
+
+#### Fixes
+
+- **uif-breadcrumb**
+  - too many elements on small screen initially ([4ebaf07](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/4ebaf07), Closes [#354](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/354))
+- **uif-messagebar**
+  - `uif-type` binding not working properly ([4e6e9bc](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/4e6e9bc), Closes [#356](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/356))
+- **uif-panel**
+  - add support for new panel type introduced in Office UI Fabric 2.4 + animation issues ([306b60d](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/306b60d), Closes [#307](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/307))
+
+
+------------------
+
+
 <a name="0.11.0"></a>
 ### [0.11.0 - May 30, 2016](https://github.com/ngOfficeUIFabric/ng-officeuifabric/releases/tag/0.11.0)
 
@@ -17,7 +121,7 @@
 - **uif-datepicker**
   - disabled not watched ([5073fa4](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/5073fa4), References [#268](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/268))
 - **uif-searchbox**
-  - dsiabled not watched ([5f71af3](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/5f71af3), References [#268](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/268)).
+  - disabled not watched ([5f71af3](https://github.com/ngOfficeUIFabric/ng-officeuifabric/commit/5f71af3), References [#268](https://github.com/ngOfficeUIFabric/ng-officeuifabric/issues/268)).
 
 
 #### Breaking Change
@@ -69,7 +173,7 @@ Before doing anything, update your dev & master branches:
   git checkout dev
   git pull --rebase upstream dev
   git checkout master
-  get pull --rebase upstream master
+  git pull --rebase upstream master
   ```
 
 To update your folder for the Typings update...
@@ -107,6 +211,7 @@ Lastly you then want to rebase your branch(es) where you are working off the upd
   # rebase off the dev branch
   git rebase dev
   ```
+
 
 ------------------
 
